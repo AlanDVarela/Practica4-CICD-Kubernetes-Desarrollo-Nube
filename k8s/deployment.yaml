@@ -1,0 +1,40 @@
+apiVersion:apps/v1
+kind:Deployment
+metadata:
+  name:calculator-api
+  labels:
+    app:calculator
+spec:
+  replicas:2
+  selector:
+    matchLabels:
+      app:calculator
+  template:
+    metadata:
+      labels:
+        app:calculator
+    spec:
+      containers:
+      - name:calculator-api
+        image:DOCKERHUB_USERNAME/calculator-api:latest #pendiente
+        ports:
+        - containerPort:3000
+        livenessProbe:
+          httpGet:
+            path:/health
+            port:3000
+          initialDelaySeconds:5
+          periodSeconds:10
+        readinessProbe:
+          httpGet:
+            path:/health
+            port:3000
+          initialDelaySeconds:5
+          periodSeconds:10
+        resources:
+          requests:
+            cpu:"100m"
+            memory:"128Mi"
+          limits:
+            cpu:"200m"
+            memory:"256Mi"
