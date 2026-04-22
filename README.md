@@ -2,11 +2,8 @@
 
 Este proyecto implementa un pipeline completo de Integración y Despliegue Continuo (CI/CD) para una API de calculadora desarrollada en **TypeScript**, desplegada en un clúster de **AWS EKS**.
 
-## 📄 Reporte de la Práctica
-Puedes encontrar el reporte detallado con las respuestas al cuestionario y los pasos detallados aquí:  
-👉 **[REPORT.md](./REPORT.md)**
 
-## 🚀 Descripción del Pipeline
+## Descripción del Pipeline
 
 El pipeline está dividido en tres workflows de GitHub Actions:
 
@@ -14,7 +11,7 @@ El pipeline está dividido en tres workflows de GitHub Actions:
 2.  **delivery**: Se activa al empujar un tag `v*`. Construye y sube la imagen a Docker Hub.
 3.  **deploy**: Se ejecuta tras el éxito de `delivery`. Despliega en el clúster de EKS.
 
-## 🔐 Configuración de Secretos en GitHub
+## Configuración de Secretos en GitHub
 
 Para que el pipeline funcione, es necesario configurar los siguientes secretos en el repositorio:
 
@@ -24,7 +21,7 @@ Para que el pipeline funcione, es necesario configurar los siguientes secretos e
 | `DOCKERHUB_TOKEN` | Access Token de Docker Hub |
 | `AWS_ACCESS_KEY_ID` | Access Key ID de AWS Academy |
 | `AWS_SECRET_ACCESS_KEY` | Secret Access Key de AWS Academy |
-| `AWS_SESSION_TOKEN` | Session Token de AWS Academy (Obligatorio) |
+| `AWS_SESSION_TOKEN` | Session Token de AWS Academy |
 | `AWS_CLUSTER_NAME` | Nombre del clúster de EKS |
 | `AWS_REGION` | Región (us-east-1) |
 
