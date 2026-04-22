@@ -1,24 +1,31 @@
 # Práctica 4: CI/CD con Kubernetes (EKS)
 
-Este proyecto implementa un pipeline completo de Integración y Despliegue Continuo (CI/CD) para una API de calculadora desarrollada en **TypeScript**, desplegada en un cluster de **AWS EKS**.
+Este proyecto implementa un pipeline completo de Integración y Despliegue Continuo (CI/CD) para una API de calculadora desarrollada en **TypeScript**, desplegada en un clúster de **AWS EKS**.
 
-## Descripción del Pipeline
+## 📄 Reporte de la Práctica
+Puedes encontrar el reporte detallado con las respuestas al cuestionario y los pasos detallados aquí:  
+👉 **[REPORT.md](./REPORT.md)**
+
+## 🚀 Descripción del Pipeline
 
 El pipeline está dividido en tres workflows de GitHub Actions:
 
-1.  **integrate**: Se dispara en cada Pull Request hacia `main`. Ejecuta la instalación de dependencias y los tests unitarios. Bloquea el merge si las pruebas fallan.
-2.  **delivery**: Se activa al empujar un tag de versión (ej: `v1.0.0`). Construye la imagen Docker de producción y la publica en Docker Hub bajo el tag de versión y el tag `latest`.
-3.  **deploy**: Se ejecuta automáticamente tras el éxito de `delivery`. Utiliza credenciales de AWS para conectarse al cluster de EKS y aplica los manifiestos de Kubernetes (`Deployment` y `Service`).
+1.  **integrate**: Se dispara en cada Pull Request hacia `main`. Ejecuta dependencias y tests unitarios.
+2.  **delivery**: Se activa al empujar un tag `v*`. Construye y sube la imagen a Docker Hub.
+3.  **deploy**: Se ejecuta tras el éxito de `delivery`. Despliega en el clúster de EKS.
 
----
+## 🔐 Configuración de Secretos en GitHub
 
-## Configuración de Secretos en GitHub
+Para que el pipeline funcione, es necesario configurar los siguientes secretos en el repositorio:
 
-*   `DOCKERHUB_USERNAME`: Tu usuario de Docker Hub.
-*   `DOCKERHUB_TOKEN`: Token de acceso personal de Docker Hub.
-*   `AWS_ACCESS_KEY_ID`: ID de acceso desde "AWS Details" en el Lab.
-*   `AWS_SECRET_ACCESS_KEY`: Clave secreta desde "AWS Details".
-*   `AWS_SESSION_TOKEN`: **Session Token obligatorio** de AWS Academy.
-*   `AWS_CLUSTER_NAME`: El nombre de tu cluster en EKS.
-*   `AWS_REGION`: La región (`us-east-1`).
+| Secreto | Descripción |
+| :--- | :--- |
+| `DOCKERHUB_USERNAME` | Usuario de Docker Hub |
+| `DOCKERHUB_TOKEN` | Access Token de Docker Hub |
+| `AWS_ACCESS_KEY_ID` | Access Key ID de AWS Academy |
+| `AWS_SECRET_ACCESS_KEY` | Secret Access Key de AWS Academy |
+| `AWS_SESSION_TOKEN` | Session Token de AWS Academy (Obligatorio) |
+| `AWS_CLUSTER_NAME` | Nombre del clúster de EKS |
+| `AWS_REGION` | Región (us-east-1) |
+
 
